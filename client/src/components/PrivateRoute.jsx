@@ -1,9 +1,12 @@
+import { useStore } from "../utils/zustand";
+import { Outlet, Navigate } from "react-router-dom";
 
 function PrivateRoute() {
+
+  const { currentUser } = useStore();
+
   return (
-    <div>
-      
-    </div>
+    <div> { currentUser ?  <Outlet /> : <Navigate to='sign-in' />} </div>
   );
 }
 

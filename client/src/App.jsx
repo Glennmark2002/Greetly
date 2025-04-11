@@ -1,15 +1,25 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import Signin from './pages/Signin';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import PrivateRoute from './components/PrivateRoute';
+import Home from './pages/Home';
+import { useStore } from './utils/zustand';
 
 function App() {
+
+  const { currentUser } = useStore();
+
   return (
     <BrowserRouter>
       <Navbar />
       <Sidebar />
       <Routes>
-        <Route path='/' element={ <Signin /> } />
+        <Route path='/'        element={ currentUser ? <Navigate to='/home' /> : < Signin /> } />
+        <Route path='/sign-in' element={ currentUser ? <Navigate to='/home' /> : < Signin /> } />
+        <Route element={ <PrivateRoute /> }>
+          <Route path='/home' element={ <Home /> } />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
