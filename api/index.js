@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import authRoutes from './routes/auth.route.js';
+import qrRoutes from './routes/qr.route.js';
 
 const app = express();
 dotenv.config();
@@ -15,3 +16,4 @@ mongoose.connect(process.env.MONGO);
 
 app.get('/', (req, res) => res.json({ message : 'API is Working'}));
 app.use('/api/auth', authRoutes);
+app.use('/api/qr', qrRoutes); 
