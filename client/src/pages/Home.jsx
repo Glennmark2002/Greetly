@@ -1,4 +1,3 @@
-import { Scan, LucideGitPullRequestCreate, RefreshCcw } from 'lucide-react'
 import { useEffect, useState } from 'react';
 import { useStore } from '../utils/zustand';
 import axios from 'axios';
@@ -67,9 +66,7 @@ function Home() {
         <button className="btn btn-neutral w-11/12 max-w-sm" onClick={handleClick} > Create Request </button>
       }
 
-
       <img src={imageURL} className='w-64 rounded-2xl' />
-      {/* <Scan className='fixed w-full lg:max-w-lg h-auto ' strokeWidth={0.5}/> */}
     </div>
   );
 }
