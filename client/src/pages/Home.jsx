@@ -1,4 +1,4 @@
-import { Scan, LucideGitPullRequestCreate } from 'lucide-react'
+import { Scan, LucideGitPullRequestCreate, RefreshCcw } from 'lucide-react'
 import { useEffect, useState } from 'react';
 import { useStore } from '../utils/zustand';
 import axios from 'axios';
@@ -30,7 +30,7 @@ function Home() {
       text: 'Ginamos',
     });
   
-    await fetchQR(); // 🔁 fetch new QR after creating
+    await fetchQR(); 
   };
 
   // useEffect(() => {
@@ -64,7 +64,7 @@ function Home() {
       { data ? 
         <p className={`absolute top-24 text-lg p-2 -z-50 text-black rounded-lg ${ data.status === 'pending' ? 'bg-gray-400' : 'bg-green-400' }`}> status - {data.status} </p>
         : 
-        <button className="btn btn-neutral w-11/12 max-w-sm absolute top-20" onClick={handleClick} > Create Request </button>
+        <button className="btn btn-neutral w-11/12 max-w-sm" onClick={handleClick} > Create Request </button>
       }
 
 
