@@ -6,12 +6,13 @@ import QRCode from 'qrcode';
 
 function Home() {
 
+  const url = import.meta.env.VITE_DB; 
   const [imageURL, setImageURL] = useState();
   const [data, setData] = useState();
   const { currentUser } = useStore();
 
   const handleClick = async () => {
-    const res = await axios.post('http://localhost:3000/api/qr/create', {
+    const res = await axios.post(`${url}/api/qr/create`, {
       user : currentUser._id, 
       text : 'Ginamos',
     });
@@ -22,7 +23,7 @@ function Home() {
   useEffect(() => {
 
     const fetch = async () => {
-      const res = await axios.post('http://localhost:3000/api/qr/get', { user : currentUser._id });
+      const res = await axios.post(`${url}/api/qr/get`, { user : currentUser._id });
       if(res.data.length > 0) {
         const qr = await QRCode.toDataURL(res.data[0]._id);
         setImageURL(qr);
