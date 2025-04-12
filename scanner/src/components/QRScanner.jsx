@@ -22,10 +22,9 @@ function QRScanner({ onScan }) {
   }, [onScan]);
 
   return (
-    <div className="relative w-full max-w-md mx-auto">
-      {/* <Scan className='w-80 lg:max-w-lg h-auto fixed ' strokeWidth={0.5}/> */}
-      {/* <video ref={videoRef} className="w-full -z-50" /> */}
-      <video ref={videoRef} className="w-full" />
+    <div className="relative w-full max-w-md mx-auto flex justify-center items-center">
+      <Scan className='w-80 lg:max-w-lg h-auto fixed' strokeWidth={0.5}/>
+      <video ref={videoRef} className="w-full -z-50" />
     </div>
   );
 }
