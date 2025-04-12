@@ -15,10 +15,8 @@ export const createQR = async (req, res) => {
 };
 
 export const getQR = async (req, res) => {
-
-  // const qr = await QR.find(req.body);  
-  // res.status(200).json(qr);
-
-  const qr = await QR.find().populate('user', 'username picture')
+  
+  const qr = await QR.find(req.body).populate('user', 'username picture')
   res.status(200).json(qr);
+  
 }

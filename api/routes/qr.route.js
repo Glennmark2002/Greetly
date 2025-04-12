@@ -4,7 +4,7 @@ import { createQR, getQR } from '../controllers/qr.controller.js';
 const router = express.Router();
 
 router.post('/create', createQR); 
-router.get('/get', getQR);
+router.post('/get', getQR);
 
 
 export default router;  

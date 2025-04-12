@@ -13,8 +13,8 @@ function Sidebar() {
       <div className={`fixed inset-y-0 left-0 bg-base-100 z-50 w-2/3 max-w-sm transform ${sidebar ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out flex`}> 
         <button className='fixed top-4 right-4 ' onClick={openSidebar}> <SidebarClose/>  </button>
         <ul className='pt-20 w-full flex flex-col gap-4 p-4' onClick={openSidebar}>
-          <Link to='/' className='btn btn-ghost justify-start gap-4 text-base'> <QrCode /> Create Request </Link> 
-          <Link to='/' className='btn btn-ghost justify-start gap-4 text-base'> <History /> History </Link>       
+          <Link to='/home' className='btn btn-ghost justify-start gap-4 text-base'> <QrCode /> Create Request </Link> 
+          <Link to='/history' className='btn btn-ghost justify-start gap-4 text-base'> <History /> History </Link>       
         </ul>
       </div>
     </div>
