@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   outline: none;
-  -webkit-user-select: none; 
-  -ms-user-select: none;     
   user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
   font-family: 'Lexend';
+}
+
+body {
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img, svg {
+  pointer-events: none;
 }
