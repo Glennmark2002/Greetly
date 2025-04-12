@@ -7,8 +7,8 @@ function App() {
   const [scannedData, setScannedData] = useState(null);
 
   return (
-    <div className="h-screen flex  justify-center items-center">
-      <Navbar />
+    <div className="h-screen flex justify-center items-center">
+      {/* <Navbar /> */}
       <div className="flex-col justify-center items-center">
         <QRScanner onScan={(data) => setScannedData(data)} />
         {scannedData && <p>Scanned Data: {scannedData}</p>}
