@@ -13,7 +13,7 @@ function Navbar() {
     <div className='navbar bg-base-100 fixed'>
       <div className='navbar-start'>
         { currentUser && <button className='btn btn-ghost' onClick={openSidebar}> <Menu /> </button> }
-        <Link to='/' className='btn btn-ghost font-bold text-2xl'> Greetly. </Link>
+        <Link to='/home' className='btn btn-ghost font-bold text-2xl'> Greetly. </Link>
       </div>
       <div className='navbar-end'>
         <Theme />
