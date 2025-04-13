@@ -19,7 +19,7 @@ function QRScanner() {
       scanner = new QrScanner(videoRef.current, (result) => {
         
         const fetch = async () => {
-          const res = await axios.put('http://localhost:3000/api/qr/scan', result.data);
+          const res = await axios.put('https://greetly-api.onrender.com/api/qr/scan', result.data);
           setScannedData(res.data);
           setUser(res.data);
           navigate('/user-detail');  
