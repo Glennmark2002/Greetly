@@ -2,8 +2,12 @@ import { useStore } from "../utils/zustand";
 
 function UserDetail() {
 
-  const { userData } = useStore();
+  const { userData, setUser } = useStore();
   console.log(userData)
+
+  const handleClick = () => {
+
+  }
 
   return (
     <div className='h-screen flex flex-col items-center pt-20 '>
@@ -12,7 +16,9 @@ function UserDetail() {
         <p className=''> { userData.user.username }   </p>
         <p className=''> { userData.status }   </p>
         <p className=''> { userData.text }   </p>
+        
       </div>
+      <button onClick={setUser(null)} > Check-in </button>
     </div>
   );
 }
