@@ -10,7 +10,7 @@ function Sidebar() {
   return (
     <div>
       { sidebar && <span className='fixed inset-0 bg-black bg-opacity-50 z-40' onClick={openSidebar}/> }
-      <div className={`fixed inset-y-0 left-0 bg-base-100 z-50 w-2/3 max-w-sm transform ${sidebar} ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out flex`}> 
+      <div className={`fixed inset-y-0 left-0 bg-base-100 z-50 w-2/3 max-w-sm transform ${sidebar ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out flex`}> 
         <button className='fixed top-4 right-4 ' onClick={openSidebar}> <SidebarClose/>  </button>
         <ul className='pt-20 w-full flex flex-col gap-4 p-4' onClick={openSidebar}>
           <Link to='/home' className='btn btn-ghost justify-start gap-4 text-base'> <QrCode /> Create Request </Link> 
