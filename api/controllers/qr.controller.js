@@ -20,3 +20,20 @@ export const getQR = async (req, res) => {
   res.status(200).json(qr);
   
 }
+
+export const scanQR = async (req, res) => {
+
+  try {
+
+    const updatedQR = await QR.findOneAndUpdate(req.body, { status: 'check-in' }, { new: true }).populate('user', 'username picture email');
+    
+    if(!updatedQR) {
+      return res.status(404).json({ message: 'QR code not found'}); 
+    }
+
+    res.status(200).json(updatedQR);
+
+  } catch (error) {
+    res.status(500).json({ error : error.message });
+  }
+}
