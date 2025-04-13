@@ -5,9 +5,9 @@ export const useStore = create(
   persist((set) => ({
     loading : false,
     theme : "light",
-    userData : null,
+    userData : null, 
 
-    setUser: (user) => set({ userData: user }),
+    setUserData : (data) => set({ userData : data }),
     ChangeTheme : () => set(state => ({ theme: state.theme === "dark" ? "light" : "dark" }))
   }), { name : 'scanner'} 
 ));

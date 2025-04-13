@@ -3,14 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 function UserDetail() {
 
-  const { userData, setUser } = useStore();
+  const { userData, setUserData } = useStore();
   const navigate = useNavigate();
-  console.log(userData)
 
   const handleClick = () => {
-    setUser(null); 
+    setUserData(null);
     navigate('/')
-
   }
 
   return (
