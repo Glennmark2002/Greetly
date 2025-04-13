@@ -8,14 +8,22 @@ function Home() {
   const url = import.meta.env.VITE_DB; 
   const [imageURL, setImageURL] = useState();
   const [data, setData] = useState();
-  const { currentUser } = useStore();
+  const { currentUser, loadingStart, loadingClose } = useStore();
 
   const fetchQR = async () => {
-    const res = await axios.post(`${url}/api/qr/get`, { user: currentUser._id });
-    if (res.data.length > 0) {
-      const qr = await QRCode.toDataURL(res.data[0]._id);
-      setImageURL(qr);
-      setData(res.data[0]);
+
+    try {
+      loadingStart()
+      const res = await axios.post(`${url}/api/qr/get`, { user: currentUser._id });
+      if (res.data.length > 0) {
+        const qr = await QRCode.toDataURL(res.data[0]._id);
+        setImageURL(qr);
+        setData(res.data[0]);
+      }
+      loadingClose();
+      
+    } catch (error) {
+      loadingClose();
     }
   };
   
@@ -24,38 +32,13 @@ function Home() {
   }, []);
   
   const handleClick = async () => {
-    const res = await axios.post(`${url}/api/qr/create`, {
+    await axios.post(`${url}/api/qr/create`, {
       user: currentUser._id,
       text: 'Ginamos',
     });
   
     await fetchQR(); 
   };
-
-  // useEffect(() => {
-
-  //   const fetch = async () => {
-  //     const res = await axios.post(`${url}/api/qr/get`, { user : currentUser._id });
-  //     if(res.data.length > 0) {
-  //       const qr = await QRCode.toDataURL(res.data[0]._id);
-  //       setImageURL(qr);
-  //       setData(res.data[0])
-  //     }
-  //   }
-
-  //   fetch();
-  // }, [data]);
-
-  // const handleClick = async () => {
-  //   const res = await axios.post(`${url}/api/qr/create`, {
-  //     user : currentUser._id, 
-  //     text : 'Ginamos',
-  //   });
-
-  //   setData(res.data); 
-  // }; 
-
-  
 
   return (
     <div className='h-screen pt-20 p-8 flex flex-col items-center justify-center gap-4 '>

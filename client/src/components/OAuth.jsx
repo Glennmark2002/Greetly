@@ -1,25 +1,37 @@
-import { authenticate } from "../utils/firebase";
+import { app } from "../utils/firebase";
 import axios from 'axios';
 import { useStore } from "../utils/zustand";
+import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 function OAuth() {
 
   const url = import.meta.env.VITE_DB
-  const { signInSuccess } = useStore();
+  const { signInStart, signInSuccess, signInFailure } = useStore();
+  const navigate = useNavigate();
 
   const handleClick = async () => {
 
-    const result = await authenticate()
-    const res = await axios.post(`${url}/api/auth/google`, {
-      name : result.user.displayName,   
-      email : result.user.email,  
-      photo : result.user.photoURL
-    }); 
+    try {
 
-    signInSuccess(res.data);
+      signInStart()
+      const provider = new GoogleAuthProvider(); 
+      const auth = getAuth(app);
+      const result = await signInWithPopup(auth, provider);
+      const res = await axios.post(`${url}/api/auth/google`, {
+        name : result.user.displayName,   
+        email : result.user.email,  
+        photo : result.user.photoURL
+      });
+      signInSuccess(res.data);  
+      navigate('/home') 
+      
+    } catch (error) {
+      signInFailure();
+    }
   }
   
-  return <button className='btn btn-ghost' onClick={handleClick}> Google </button>
+  return <button className='btn btn-neutral w-3/4' onClick={handleClick}> Gooogol </button>
 }
 
 export default OAuth;

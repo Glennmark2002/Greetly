@@ -1,6 +1,4 @@
-// 
-
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+// import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -12,10 +10,12 @@ const firebaseConfig = {
   appId: "1:675440807963:web:a2a9a97bfba59f3426e8be"
 };
 
-const app = initializeApp(firebaseConfig);
-const provider = new GoogleAuthProvider(); 
-const auth = getAuth(app); 
+export const app = initializeApp(firebaseConfig);
 
-export const authenticate = async () => await signInWithPopup(auth, provider);
+// const app = initializeApp(firebaseConfig);
+// const provider = new GoogleAuthProvider(); 
+// const auth = getAuth(app); 
+
+// export const authenticate = async () => await signInWithPopup(auth, provider);
 
 

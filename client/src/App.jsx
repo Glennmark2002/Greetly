@@ -6,6 +6,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home';
 import History from './pages/History';
 import { useStore } from './utils/zustand';
+import Loading from './components/Loading';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Sidebar />
+      <Loading />
       <Routes>
         <Route path='/'        element={ currentUser ? <Navigate to='/home' /> : < Signin /> } />
         <Route path='/sign-in' element={ currentUser ? <Navigate to='/home' /> : < Signin /> } />
