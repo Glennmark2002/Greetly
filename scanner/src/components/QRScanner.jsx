@@ -1,14 +1,12 @@
 import QrScanner from 'qr-scanner';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Scan } from 'lucide-react';
-import UserDetail from './UserDetail';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
-import { useStore, useTempStore } from '../utils/zustand';
+import { useStore } from '../utils/zustand';
 
 function QRScanner() {
 
-  const [scannedData, setScannedData] = useState(null);
   const navigate = useNavigate();
   const { setUser } = useStore();
   const videoRef = useRef(null);
@@ -17,10 +15,10 @@ function QRScanner() {
   useEffect(() => {
     if(videoRef.current) { 
       scanner = new QrScanner(videoRef.current, (result) => {
-        
+        scanner.stop();
         const fetch = async () => {
           const res = await axios.put('https://greetly-api.onrender.com/api/qr/scan', result.data);
-          setScannedData(res.data);
+          console.log(res.data)
           setUser(res.data);
           navigate('/user-detail');  
         }
@@ -39,7 +37,6 @@ function QRScanner() {
   return (
     <div className="relative w-full h-screen max-w-md mx-auto flex flex-col justify-center items-center">
       <Scan className='w-80 lg:max-w-lg h-auto fixed' strokeWidth={0.5}/>
-      {/* <UserDetail data={scannedData}  /> */}
       <video ref={videoRef} className="w-full -z-50" />
     </div>
   );
