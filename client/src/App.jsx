@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import History from './pages/History';
 import { useStore } from './utils/zustand';
 import Loading from './components/Loading';
+import RequestForm from './pages/RequestForm';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path='/sign-in' element={ currentUser ? <Navigate to='/home' /> : < Signin /> } />
         <Route element={ <PrivateRoute /> }>
           <Route path='/home'    element={ <Home /> } />
+          <Route path='request-form' element={ <RequestForm /> } />
           <Route path='/history' element={ <History /> } />
         </Route>
       </Routes>
