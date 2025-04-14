@@ -34,6 +34,13 @@ export const signout = async (req, res) => {
   res.clearCookie('access_token').status(200).json('Signout Success');
 }
 
+export const getUser = async (req, res) => {
+
+  const users = await User.find(); 
+
+  res.json(users);
+}
+
 function createCookie(token, rest, res) {
   const expires = new Date(Date.now() + 3600000); 
   res.cookie('access_token', token, {

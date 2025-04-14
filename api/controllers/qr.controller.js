@@ -1,17 +1,18 @@
 import QR from "../models/qr.model.js";
+import QRCode from 'qrcode';
 
 export const createQR = async (req, res) => {
 
-  const newQR = new QR(req.body);
+  let userData = await QR.findOne({ user : req.body.user })
 
-  try {
-   
-    await newQR.save();
-    res.status(200).json(newQR);
-
-  } catch (error) {
-    res.status(500).json(error);
+  if(!userData) {
+    const qr = new QR(req.body);
+    userData = await qr.save();
   }
+
+  const qrImage = await QRCode.toDataURL(userData._id.toString());
+  res.json({ qr : qrImage, status : userData.status});
+  // res.json(qrImage);
 };
 
 export const getQR = async (req, res) => {
@@ -37,3 +38,4 @@ export const scanQR = async (req, res) => {
     res.status(500).json({ error : error.message });
   }
 }
+
