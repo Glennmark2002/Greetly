@@ -6,7 +6,6 @@ const QRSchema = new mongoose.Schema(
     contactNumber : { type : String, required: true },
     purpose : { type: String, required: true },
     appointmentDate : { type : String, required: true },
-    appointmentTime : { type : String, required : true },
     status : { type : String, default : 'pending' }
   }
 ); 
