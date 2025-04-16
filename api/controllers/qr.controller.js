@@ -5,26 +5,23 @@ import moment from 'moment';
 export const createQR = async (req, res) => {
 
   try {
-
+    
     const { user, appointmentDate, ...rest } = req.body; 
-    const formatDate = moment(appointmentDate).format('MMM D, YYYY, h:mm A');
-    const qr = new QR({ user, appointmentDate: formatDate, ...rest });
-    await qr.save()
+    const isExisting = await QR.findOne({ user });
+
+    if(!isExisting) {
       
+      const formatDate = moment(appointmentDate).format('MMM D, YYYY, h:mm A');
+      const qr = new QR({ user, appointmentDate: formatDate, ...rest });
+      const saved = await qr.save();
+      return res.status(201).json({ message: 'QR created', qr: saved });
+    }
+
+    return res.status(200).json({ message: 'QR already exists' });
+
   } catch (error) {
     console.log(error.message)
   }
-  
-
-  // let userData = await QR.findOne({ user : req.body.user })
-
-  // if(!userData) {
-  //   const qr = new QR(req.body);
-  //   userData = await qr.save();
-  // }
-
-  // const qrImage = await QRCode.toDataURL(userData._id.toString());
-  // res.json({ qr : qrImage, status : userData.status});
 };
 
 export const getQR = async (req, res) => {
