@@ -14,8 +14,12 @@ function RequestForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await axios.post(`${url}/api/qr/create`, formData);
-    navigate('/home');
+    try {
+      const res = await axios.post(`${url}/api/qr/create`, formData);
+      navigate('/home');
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleChange = (e) => setFormData({...formData, [e.target.id] : e.target.value});
