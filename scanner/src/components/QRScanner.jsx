@@ -14,7 +14,9 @@ function QRScanner() {
   let scanner = null;  
   
   useEffect(() => {
+        
     if(videoRef.current) { 
+
       scanner = new QrScanner(videoRef.current, (result) => {
 
         const fetch = async () => { 

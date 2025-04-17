@@ -38,16 +38,27 @@ export const scanQR = async (req, res) => {
 
   try {
 
-    const updatedQR = await QR.findOneAndUpdate(req.body, { status: 'check-in' }, { new: true }).populate('user', 'username picture email');
+    const userData = await QR.findOne(req.body).populate('user', 'username picture email');  
     
-    if(!updatedQR) {
-      return res.status(404).json({ message: 'QR code not found'}); 
+    if(userData.status === 'pending') {
+
+      if(!userData) return res.status(404).json({message : 'QR code not found'});
+  
+      res.status(200).json(userData);
+    } else { 
+
+      const updatedData = await QR.findOneAndUpdate(req.body, { status : 'check-in' }, {new : true})
+      console.log(updatedData);
     }
-
-    res.status(200).json(updatedQR);
-
+  
   } catch (error) {
     res.status(500).json({ error : error.message });
   }
 }
+
+export const updateQR = async (req, res) => {
+  await QR.findOneAndUpdate(req.body, {status : 'approved'},{ new: true  }); 
+  res.status(200).json({ message : 'Data has been approved'});
+}
+
 

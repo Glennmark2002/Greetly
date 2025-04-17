@@ -1,12 +1,17 @@
 import { useStore } from "../utils/zustand";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function UserDetail() {
 
+  const url = import.meta.env.VITE_DB;
   const { userData, setUserData } = useStore();
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = async () => {
+
+    const res = await axios.post(`${url}/api/qr/update`, { _id : userData._id });
+    console.log(res.data);
     setUserData(null);
     navigate('/')
   }
@@ -19,7 +24,7 @@ function UserDetail() {
         <div className='flex w-full p-4 gap-4'>
           <img src={ userData.user.picture } className='rounded-full w-28 h-28'/>
           <div className='w-full flex justify-center items-center'>
-            <p className=' bg-green-300 border-base-content w-full p-3 rounded-2xl text-base text-center relative text-black flex justify-center'> <span className='absolute -top-4 border-2 border-base-content bg-green-100 px-4  rounded-full text-black'> status </span>{ userData.status } </p>
+            <p className=' bg-amber-200 border-base-content w-full p-3 rounded-2xl text-base text-center relative text-black flex justify-center'> <span className='absolute -top-4 border-2 border-base-content bg-green-100 px-4  rounded-full text-black'> status </span>{ userData.status } </p>
           </div>
         </div>
         <div className='flex flex-col w-full p-4 gap-6'>
