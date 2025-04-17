@@ -26,7 +26,7 @@ function UserProfile() {
             <img src={currentUser.picture} />
             </div>
           </div>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2  border-2 border-neutral">
+          <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 z-50 rounded-box mt-3 w-52 p-2  border-2 border-base-content">
             <li><a> Profile </a> </li>
             <li><a>Settings</a></li>
             <li><a onClick={handleSignout} >Logout</a></li>
