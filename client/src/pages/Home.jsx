@@ -19,6 +19,10 @@ function Home() {
 
     fetch();
 
+    const interval = setInterval(fetch, 2000);
+
+    return () => clearInterval(interval);
+
   }, [])
 
   return (
