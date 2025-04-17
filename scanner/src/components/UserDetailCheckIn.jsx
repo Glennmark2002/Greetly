@@ -1,22 +1,23 @@
+import { useEffect } from "react";
 import { useStore } from "../utils/zustand";
-import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from 'axios'
 import { useState } from "react";
 
-function UserDetail() {
+function UserDetailCheckIn() {
 
-  const url = import.meta.env.VITE_DB;
-  const { userData, setUserData } = useStore();
-  const navigate = useNavigate();
+  const { userData } = useStore(); 
+  const url = import.meta.env.VITE_DB;  
+  const [status, setStatus] = useState();
 
-  const handleClick = async () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.post(`${url}/api/qr/update`, { _id : userData._id }); 
+      setStatus(res.data.status);
+      console.log(res.data);
+    }
 
-    const res = await axios.post(`${url}/api/qr/update`, { _id : userData._id });
-    setUserData(null);
-    navigate('/')
-  }
-
-  console.log(userData)
+    fetchData();
+  }, []);
 
   return (
     <div className='h-screen flex flex-col items-center pt-14'>
@@ -24,7 +25,7 @@ function UserDetail() {
         <div className='flex w-full p-4 gap-4'>
           <img src={ userData.user.picture } className='rounded-full w-28 h-28'/>
           <div className='w-full flex justify-center items-center'>
-            <p className=' bg-amber-200 border-base-content w-full p-3 rounded-2xl text-base text-center relative text-black flex justify-center'> <span className='absolute -top-4 border-2 border-base-content bg-green-100 px-4  rounded-full text-black'> status </span>{ userData.status } </p>
+            <p className={`${ status === 'check in' ? 'bg-green-400' : 'bg-red-400'  } border-base-content w-full p-3 rounded-2xl text-base text-center relative text-black flex justify-center`}> <span className='absolute -top-4 border-2 border-base-content bg-green-100 px-4  rounded-full text-black'> status </span>{ status } </p>
           </div>
         </div>
         <div className='flex flex-col w-full p-4 gap-6'>
@@ -33,11 +34,11 @@ function UserDetail() {
           <p className='border-2 border-base-content p-4 rounded-2xl text-base text-center relative flex justify-center'> <span className='absolute -top-4 border-2 border-base-content bg-green-100 px-4  rounded-full text-black'> Contact Number </span>{ userData.contactNumber } </p>
           <p className='border-2 border-base-content p-4 rounded-2xl text-base text-center relative flex justify-center'> <span className='absolute -top-4 border-2 border-base-content bg-green-100 px-4  rounded-full text-black'> Appoinment Date </span>{ userData.appointmentDate }   </p>
           <p className='border-2 border-base-content p-4 rounded-2xl text-base text-center relative flex justify-center'> <span className='absolute -top-4 border-2 border-base-content bg-green-100 px-4  rounded-full text-black'> Purpose </span>{ userData.purpose }   </p>
-          <button className='btn btn-neutral rounded-2xl mt-5' onClick={handleClick} > Approved </button>
+          
         </div>
       </div>
     </div>
   );
 }
 
-export default UserDetail;
+export default UserDetailCheckIn;

@@ -14,15 +14,20 @@ function QRScanner() {
   let scanner = null;  
   
   useEffect(() => {
-        
+
     if(videoRef.current) { 
 
       scanner = new QrScanner(videoRef.current, (result) => {
 
         const fetch = async () => { 
           const res = await axios.put(`${url}/api/qr/scan`, { _id : result.data});
+          scanner.stop();
           setUserData(res.data);
-          navigate('/user-detail'); 
+          if(res.data.status === 'pending') {
+            navigate('/user-detail'); 
+          } else { 
+            navigate('/user-detail-checkin');
+          }
         }
         
         fetch();        
