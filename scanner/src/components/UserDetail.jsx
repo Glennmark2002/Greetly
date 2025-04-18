@@ -11,7 +11,7 @@ function UserDetail() {
 
   const handleClick = async () => {
 
-    const res = await axios.post(`${url}/api/qr/update`, { _id : userData._id });
+    const res = await axios.post(`/api/qr/update`, { _id : userData._id });
     setUserData(null);
     navigate('/')
   }

@@ -20,7 +20,7 @@ function QRScanner() {
       scanner = new QrScanner(videoRef.current, (result) => {
 
         const fetch = async () => { 
-          const res = await axios.put(`${url}/api/qr/scan`, { _id : result.data});
+          const res = await axios.put(`/api/qr/scan`, { _id : result.data});
           scanner.stop();
           setUserData(res.data);
           if(res.data.status === 'pending') {
