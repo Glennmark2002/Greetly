@@ -1,7 +1,6 @@
 import { useStore } from "../utils/zustand";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { useState } from "react";
 
 function UserDetail() {
 
@@ -11,7 +10,7 @@ function UserDetail() {
 
   const handleClick = async () => {
 
-    const res = await axios.post(`/api/qr/update`, { _id : userData._id });
+    const res = await axios.post('/api/qr/update', { _id : userData._id });
     setUserData(null);
     navigate('/')
   }
