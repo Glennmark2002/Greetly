@@ -1,5 +1,5 @@
 import express from 'express';
-import { createQR, getQR, scanQR, updateQR, getArchiveQR, getUserData } from '../controllers/qr.controller.js';
+import { createQR, getQR, scanQR, updateQR, getArchiveQR, getUserData, getLogs } from '../controllers/qr.controller.js';
 
 const router = express.Router();
 
@@ -9,5 +9,6 @@ router.put('/scan', scanQR);
 router.post('/update', updateQR);
 router.post('/archive', getArchiveQR);  
 router.get('/users', getUserData);
+router.get('/logs', getLogs)
 
 export default router;  

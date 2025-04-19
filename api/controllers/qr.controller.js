@@ -89,8 +89,22 @@ export const getArchiveQR = async (req, res) => {
 
 export const getUserData = async (req, res) => {
 
-  const userArchive = await Archive.find();
-  res.json(userArchive);
+  try {
+    const userArchive = await Archive.find().populate('user', 'username picture email');
+    res.json(userArchive);
+    
+  } catch (error) {
+    res.json(error.message)
+  }
+}
+
+export const getLogs = async (req, res) => {
+  try {
+    const logs = await QR.find().populate('user', 'username picture email' );  
+    res.json(logs);
+  } catch (error) {
+    res.json(error.message)
+  }
 }
 
 
