@@ -14,7 +14,7 @@ function UserDetailCheckIn() {
     const fetchData = async () => {
       const res = await axios.post('/api/qr/update', { _id : userData._id }); 
       setStatus(res.data.status);
-      console.log(res.data);
+
     }
 
     fetchData();

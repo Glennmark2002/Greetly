@@ -12,6 +12,10 @@ function Logs() {
     }
 
     fetchLogs();
+
+    const interval = setInterval(fetchLogs, 2000);
+
+    return () => clearInterval(interval);
   }, [])
 
   return (
