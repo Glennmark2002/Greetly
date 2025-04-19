@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom'
 function UserDetailCheckIn() {
 
   const { userData } = useStore(); 
-  const url = import.meta.env.VITE_DB;  
+  // const url = import.meta.env.VITE_DB;  
   const [status, setStatus] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.post(`${url}/api/qr/update`, { _id : userData._id }); 
+      const res = await axios.post('/api/qr/update', { _id : userData._id }); 
       setStatus(res.data.status);
       console.log(res.data);
     }
