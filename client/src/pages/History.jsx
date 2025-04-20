@@ -8,12 +8,11 @@ import Card from '../components/Card';
 function History() {
 
   const { currentUser } = useStore();
-  const url = import.meta.env.VITE_DB;
   const [formData, setFormData] = useState([]);
 
   useEffect(() => { 
     const fetchData = async () => {
-      const res = await axios.post(`${url}/api/qr/archive`, { user : currentUser._id });
+      const res = await axios.post('/api/qr/archive', { user : currentUser._id });
       setFormData(res.data);
     }
 

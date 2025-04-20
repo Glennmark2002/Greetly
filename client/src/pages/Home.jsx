@@ -5,14 +5,13 @@ import { Link  } from 'react-router-dom';
 
 function Home() {
 
-  const url = import.meta.env.VITE_DB;  
   const [imageURL, setImageURL] = useState();
   const [status, setStatus] = useState();
   const { currentUser, loadingStart, loadingClose } = useStore();
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.post(`${url}/api/qr/get`, { user : currentUser._id });
+      const res = await axios.post('/api/qr/get', { user : currentUser._id });
       setImageURL(res.data.qr); 
       setStatus(res.data.status);
     };

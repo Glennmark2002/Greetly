@@ -4,18 +4,15 @@ import axios from 'axios';
 
 function UserDetail() {
 
-  const url = import.meta.env.VITE_DB;
   const { userData, setUserData } = useStore();
   const navigate = useNavigate();
 
   const handleClick = async () => {
 
-    const res = await axios.post('/api/qr/update', { _id : userData._id });
+    await axios.post('/api/qr/update', { _id : userData._id });
     setUserData(null);
     navigate('/')
   }
-
-  console.log(userData)
 
   return (
     <div className='h-screen flex flex-col items-center pt-14'>

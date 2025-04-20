@@ -7,7 +7,6 @@ import axios from 'axios';
 
 function QRScanner() {
 
-  const url = import.meta.env.VITE_DB;
   const navigate = useNavigate();
   const { setUserData } = useStore();
   const videoRef = useRef(null);

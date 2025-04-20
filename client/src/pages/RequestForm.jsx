@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function RequestForm() {
 
   const { currentUser } = useStore();  
-  const url = import.meta.env.VITE_DB; 
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ user : currentUser._id });
@@ -15,7 +14,7 @@ function RequestForm() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${url}/api/qr/create`, formData);
+      await axios.post('/api/qr/create', formData);
       navigate('/home');
     } catch (error) {
       console.log(error)

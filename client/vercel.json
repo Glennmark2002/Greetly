@@ -1,7 +1,13 @@
 {
   "rewrites" : [
     {
-      "source" : "/(.*)", "destination" : "/"
+      "source" : "/api/:path*",
+      "destination" : "https://greetly-api.onrender.com/api/:path*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/" 
     }
   ]
 }
+

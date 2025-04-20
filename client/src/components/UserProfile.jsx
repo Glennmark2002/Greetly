@@ -5,12 +5,11 @@ import axios from 'axios';
 function UserProfile() {
 
   const { currentUser, signOut, signOutStart } = useStore();
-  const url = import.meta.env.VITE_DB;
 
   const handleSignout = async () => {
     try {
       signOutStart()
-      await axios.get(`${url}/api/auth/signout`);
+      await axios.get('/api/auth/signout');
       signOut()
     } catch (error) {
       console.log(error);

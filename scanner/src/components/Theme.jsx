@@ -13,8 +13,6 @@ function Theme() {
     themeColorMeta.setAttribute('content', theme === 'dark' ? '#1d232a' : '#ffffff'
     );
     }
-
-
   }, [theme]);
 
   return (
