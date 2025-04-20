@@ -24,7 +24,7 @@ function Logs() {
         <table className='table w-full'> 
           <thead className='sticky top-0 bg-base-100 z-10'>
             <tr>
-              <th className='bg-transparent text-sm text-center text-base-content'>User </th>
+              <th className='text-sm text-center text-base-content'>User </th>
               <th className='text-sm text-center text-base-content'>Purpose</th>
               <th className='text-sm text-center text-base-content'>Appointment Date</th>
               <th className='text-sm text-center text-base-content'>Status</th>
