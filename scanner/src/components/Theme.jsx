@@ -8,11 +8,11 @@ function Theme() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-    if (themeColorMeta) {
-    themeColorMeta.setAttribute('content', theme === 'dark' ? '#0f172a' : '#ffffff'
-    );
-  }
+    // const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    // if (themeColorMeta) {
+    // themeColorMeta.setAttribute('content', theme === 'dark' ? '#0f172a' : '#ffffff'
+    // );
+    // }
 
 
   }, [theme]);
