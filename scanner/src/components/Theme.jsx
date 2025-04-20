@@ -10,7 +10,7 @@ function Theme() {
     document.documentElement.setAttribute('data-theme', theme);
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     if (themeColorMeta) {
-    themeColorMeta.setAttribute('content', theme === 'dark' ? '##1d232a' : '#ffffff'
+    themeColorMeta.setAttribute('content', theme === 'dark' ? '#1d232a' : '#ffffff'
     );
     }
 
