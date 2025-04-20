@@ -8,13 +8,13 @@ function Theme() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+    themeColorMeta.setAttribute('content', theme === 'dark' ? '#0f172a' : '#ffffff'
+    );
+  }
 
-    let meta = document.querySelector("meta[name='theme-color']");
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.name = "theme-color";
-      document.head.appendChild(meta);
-    }
+
   }, [theme]);
 
   return (
