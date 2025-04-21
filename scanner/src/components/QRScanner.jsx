@@ -46,7 +46,11 @@ function QRScanner() {
 
   return (
     <div className="relative w-full h-screen max-w-md mx-auto flex flex-col justify-center items-center">
-      { loading ? <p>Loading ...</p> : <Scan className='w-80 lg:max-w-lg h-auto fixed' strokeWidth={0.5}/>  }
+      {loading && <div className='inset-0 bg-black fixed bg-opacity-50 z-49 flex justify-center items-center'>
+        <span className='loading loading-dots z-50 loading-lg' />
+      </div> }
+      
+      <Scan className='w-80 lg:max-w-lg h-auto  fixed' strokeWidth={0.5}/>
       <video ref={videoRef} className="w-full -z-50" />
     </div>
   );

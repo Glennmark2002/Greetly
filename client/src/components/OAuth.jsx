@@ -30,7 +30,7 @@ function OAuth() {
     }
   }
   
-  return <button className='btn btn-neutral w-3/4' onClick={handleClick}> Gooogol </button>
+  return <button className='btn btn-neutral w-3/4 max-w-md' onClick={handleClick}> Gooogol </button>
 }
 
 export default OAuth;
