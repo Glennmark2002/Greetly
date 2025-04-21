@@ -106,7 +106,12 @@ export const getUserData = async (req, res) => {
 
 export const getLogs = async (req, res) => {
   try {
+
+
     const logs = await QR.find().populate('user', 'username picture email' );  
+
+    if(!logs) return res.json('No User')
+
     res.json(logs);
   } catch (error) {
     res.json(error.message)
