@@ -26,13 +26,19 @@ export const createQR = async (req, res) => {
 };
 
 export const getQR = async (req, res) => {
- 
-  const userData = await QR.findOne({ user : req.body.user });  
+  
+  try {
+    const userData = await QR.findOne({ user : req.body.user });  
 
-  if(!userData) return
+    if(!userData) return res.json('No QR')
 
-  const qrImage = await QRCode.toDataURL(userData._id.toString());
-  res.json({ qr : qrImage, status : userData.status});
+    const qrImage = await QRCode.toDataURL(userData._id.toString());
+    res.json({ qr : qrImage, status : userData.status});
+    
+  } catch (error) {
+    res.json(error)
+  } 
+  
 }
 
 export const scanQR = async (req, res) => {
