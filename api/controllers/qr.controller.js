@@ -86,7 +86,7 @@ export const updateQR = async (req, res) => {
 export const getArchiveQR = async (req, res) => {
 
   try {
-    const user = await Archive.find({ user : req.body.user}).populate('user', 'username picture');
+    const user = await Archive.find({ user : req.body.user}).populate('user', 'username picture').sort({ deleteAt: -1 });
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message : error.message });

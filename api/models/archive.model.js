@@ -8,7 +8,7 @@ const ArchiveSchema = mongoose.Schema(
     appointmentDate : { type : String, required: true },
     status : { type : String, default : 'pending' }, 
     deleteAt : { type: Date, default: Date.now }
-  }
+  }, { timestamps : true }
 );
 
 const Archive = mongoose.model('Archive', ArchiveSchema);
