@@ -17,7 +17,9 @@ function History() {
 
   return (
     <div className='h-screen flex items-center pt-20 p-4 flex-col gap-6'>
-      {isLoading ? <span className='h-screen flex justify-center items-center loading loading-dots loading-lg'/> : ( data?._id ? data.map(i => <Card key={i._id} data={i} />) : <p className='h-screen flex justify-center items-center font-bold text-lg'> No History </p>)}
+      {isLoading ? ( <span className='h-screen flex justify-center items-center loading loading-dots loading-lg' /> ) : 
+                   ( data && data.length > 0 ? ( data.map(i => <Card key={i._id} data={i} />)) :
+                   ( <p className='h-screen flex justify-center items-center font-bold text-lg'>No History</p>))}
     </div>
   );
 }
