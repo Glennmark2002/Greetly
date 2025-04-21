@@ -22,6 +22,9 @@ export const useStore = create(
 
 
 export const useTempStore = create((set) => ({
+  loading,
   sidebar : false, 
   openSidebar : () => set((state) => ({sidebar : !state.sidebar})),
+  loadingStart : () => set({ loading : true }),
+  loadingClose : () => set({ loading : false}),  
 }));
