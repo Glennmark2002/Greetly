@@ -1,9 +1,9 @@
 import React from 'react';
-import { useStore } from '../utils/zustand';
+import { useTempStore } from '../utils/zustand';
 
 function Loading() {
 
-  const { loading } = useStore();
+  const { loading } = useTempStore();
 
   return (
     <>

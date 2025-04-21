@@ -1,18 +1,20 @@
 import React from 'react';
-import { useStore } from '../utils/zustand';
+import { useStore, useTempStore } from '../utils/zustand';
 import axios from 'axios';
 
 function UserProfile() {
 
   const { currentUser, signOut, signOutStart } = useStore();
+  const { loadingStart, loadingClose } = useTempStore();
 
   const handleSignout = async () => {
     try {
-      signOutStart()
+      loadingStart();
       await axios.get('/api/auth/signout');
       signOut()
+      loadingClose();
     } catch (error) {
-      console.log(error);
+      loadingClose();
     }
   }
 

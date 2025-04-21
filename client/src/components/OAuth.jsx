@@ -1,19 +1,21 @@
 import { app } from "../utils/firebase";
 import axios from 'axios';
-import { useStore } from "../utils/zustand";
+import { useStore, useTempStore } from "../utils/zustand";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 function OAuth() {
 
   const { signInStart, signInSuccess, signInFailure } = useStore();
+  const { loadingStart, loadingClose } = useTempStore();
   const navigate = useNavigate();
 
   const handleClick = async () => {
 
     try {
-
-      signInStart()
+      
+      loadingStart()
       const provider = new GoogleAuthProvider(); 
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, provider);
@@ -23,10 +25,11 @@ function OAuth() {
         photo : result.user.photoURL
       });
       signInSuccess(res.data);  
+      loadingClose();
       navigate('/home') 
       
     } catch (error) {
-      signInFailure();
+      loadingClose();
     }
   }
   
