@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 function UserDetailCheckIn() {
 
   const { userData } = useStore(); 
-  // const url = import.meta.env.VITE_DB;  
   const [status, setStatus] = useState();
 
   useEffect(() => {
