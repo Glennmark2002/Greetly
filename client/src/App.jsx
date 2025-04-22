@@ -13,7 +13,7 @@ function App() {
 
   const { currentUser } = useStore();
 
-  return (
+  return ( 
     <BrowserRouter>
       <Navbar />
       <Sidebar />
