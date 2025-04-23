@@ -9,8 +9,13 @@ function Home() {
   const { currentUser } = useStore();
 
   const fetchQrData = async () => {
-    const res = await axios.post('/api/qr/get', { user : currentUser._id }); 
-    return res.data;
+    try {
+      const res = await axios.post('/api/qr/get', { user : currentUser._id }); 
+      return res.data;
+    } catch (error) {
+      console.log(error.message)
+    }
+    
   }
 
   const { data, isLoading } = useQuery({ 
