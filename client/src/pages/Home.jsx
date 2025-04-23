@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useStore } from '../utils/zustand';
 import axios from 'axios';
 import { Link  } from 'react-router-dom';
@@ -13,7 +12,7 @@ function Home() {
       const res = await axios.post('/api/qr/get', { user : currentUser._id }); 
       return res.data;
     } catch (error) {
-      console.log(error.message)
+      return error.message
     }
     
   }
