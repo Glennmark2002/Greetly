@@ -15,15 +15,25 @@ export default defineConfig({
     [
       react(),  
       VitePWA({
-        srcDir: 'public',
-        filename: 'site.webmanifest',
         registerType: 'autoUpdate',
-        includeAssets: [
-          'favicon-32x32.png',
-          'favicon-16x16.png',
-          'apple-touch-icon.png'
-        ],
-        manifest: false 
+        includeAssets: ['favicon.ico','favicon-32x32.png','favicon-16x16.png','apple-touch-icon.png'],
+        manifest: {
+          name : 'Greetly Scan',
+          short_name: 'Greetly Scan',
+          display: 'standalone',
+          theme_color:'#ffffff',
+          background_color:'#ffffff',
+          icons: [
+            {
+              src: 'android-chrome-192x192.png',
+              sizes: '192x192',
+            },
+            {
+              src: 'android-chrome-512x512.png',
+              sizes: '512x512',
+            }
+          ]
+        } 
       })
     
     ],
