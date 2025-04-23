@@ -20,6 +20,7 @@ export default defineConfig({
         manifest: {
           name : 'Greetly Scan',
           short_name: 'Greetly Scan',
+          start_url: '/',
           display: 'standalone',
           theme_color:'#ffffff',
           background_color:'#ffffff',
@@ -35,6 +36,5 @@ export default defineConfig({
           ]
         } 
       })
-    
     ],
 })
